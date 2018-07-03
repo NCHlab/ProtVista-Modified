@@ -46,7 +46,7 @@ var Constants = function() {
         return 'http://www.uniprot.org/blast/?about=';
     },
     getNoBlastTypes: function() {
-      return ['helix', 'strand', 'turn', 'disulfid', 'crosslnk', 'variant', 'motif', 'domain', 'coiled'];
+      return ['helix', 'strand', 'turn', 'disulfid', 'crosslnk', 'variant'];
     },
     getVisualizationTypes: function() {
         return visualizationTypes;

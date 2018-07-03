@@ -24,8 +24,7 @@ var defaultFilterCaseDisease = {
     color: LegendDialog.UPDiseaseColor
 };
 var defaultFilterCasePrediction = {
-	// label: ['Predicted deleterious', 'Predicted benign'],
-    label: ['Higher Confidence', 'Lower Confidence'],
+    label: ['Predicted deleterious', 'Predicted benign'],
     on: true,
     properties: {
         'alternativeSequence': /[^*]/,

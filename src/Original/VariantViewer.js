@@ -27,7 +27,7 @@ var getPredictionColorScore = function(siftScore, siftPrediction, polyphenScore,
     if (sift && polyphen) {
         return (siftScore + (1 - polyphenScore)) / 2;
     } else if (sift && !polyphen) {
-        return 1 - siftScore;
+        return siftScore;
     } else if (!sift && polyphen) {
         return 1 - polyphenScore;
     } else if (polyphenPrediction === 'unknown') {

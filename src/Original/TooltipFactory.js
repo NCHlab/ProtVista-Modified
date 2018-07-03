@@ -252,31 +252,31 @@ Tooltip.prototype.addEvidences = function(evidences) {
     });
 };
 
-Tooltip.prototype.addRetrominer = function() {
+Tooltip.prototype.addBlast = function() {
     var tooltip = this;
     var end = tooltip.data.end ? tooltip.data.end : tooltip.data.begin;
     var type = tooltip.data.type.toLowerCase();
     if (((end - tooltip.data.begin) >= 3) && (!_.contains(Constants.getNoBlastTypes(), type))) {
-        var RetroMiner = tooltip.table.append('tr');
-        RetroMiner.append('td').text('Tools');
-        //var url = Constants.getBlastURL() + tooltip.accession + '[' + tooltip.data.begin;
-        //url += '-';
-        //url += end + ']' + '&key=' + Constants.getTrackInfo(type).label;
-        //if (tooltip.data.ftId) {
-        //    url += '&id=' + tooltip.data.ftId;
-        //}
-        RetroMiner.append('td').append('span')
+        var blast = tooltip.table.append('tr');
+        blast.append('td').text('Tools');
+        var url = Constants.getBlastURL() + tooltip.accession + '[' + tooltip.data.begin;
+        url += '-';
+        url += end + ']' + '&key=' + Constants.getTrackInfo(type).label;
+        if (tooltip.data.ftId) {
+            url += '&id=' + tooltip.data.ftId;
+        }
+        blast.append('td').append('span')
             .append('a')
-            .attr('href', "https://github.com/Nazrath10R/Pride_Reanalysis/")
+            .attr('href', url)
             .attr('target', '_blank')
-            .text('RetroMiner');
+            .text('BLAST');
     }
 };
 
 var BasicTooltipViewer = function(tooltip) {
     tooltip.addEvidences(tooltip.data.evidences);
     addXRefs(tooltip, tooltip.data.xrefs);
-    tooltip.addRetrominer();
+    tooltip.addBlast();
 };
 
 var AntigenTooltipViewer = function(tooltip) {
@@ -290,7 +290,7 @@ var AntigenTooltipViewer = function(tooltip) {
     }
     tooltip.addEvidences(tooltip.data.evidences);
     addXRefs(tooltip, tooltip.data.xrefs);
-    tooltip.addRetrominer();
+    tooltip.addBlast();
 };
 
 var AlternativeTooltipViewer = function(tooltip, change, field) {
@@ -307,7 +307,7 @@ var AlternativeTooltipViewer = function(tooltip, change, field) {
     }
     tooltip.addEvidences(tooltip.data.evidences);
     addXRefs(tooltip, tooltip.data.xrefs);
-    tooltip.addRetrominer();
+    tooltip.addBlast();
 };
 
 var addPredictions = function(tooltip, data) {
@@ -318,38 +318,21 @@ var addPredictions = function(tooltip, data) {
             .attr('target', '_blank').text('Frequency (MAF)');
         freqRow.append('td').text(data.frequency);
     }
-    // if (data.polyphenPrediction && (data.polyphenPrediction !== '-') && (data.polyphenInUse !== false)) {
-        // var polyRow = tooltip.table.append('tr');
-        // polyRow.append('td').append('span').append('a')
-            // .attr('href', 'http://genetics.bwh.harvard.edu/pph2/dokuwiki/about')
-            // .attr('target', '_blank').text('Polyphen');
-        // var text = data.polyphenPrediction + ', score ' + data.polyphenScore;
-        // polyRow.append('td').text(text);
-    // }
-    if (data.siftPrediction && (data.siftPrediction !== '-') && (data.siftInUse !== false)) {
-        var ConfRow = tooltip.table.append('tr');
-        ConfRow.append('td').append('span').append('a')
-            .attr('href', 'http://rtpea.com/browse')
-            .attr('target', '_blank').text('Confidence');
-        // var predictionText = data.siftPrediction + ', score ' + data.siftScore;
-		var ConfLevel = "TBC"
-		if (data.siftScore >= 0.8){
-			ConfLevel = "High Confidence"
-		} else if (data.siftScore < 0.8 && data.siftScore >= 0.4){
-			ConfLevel = "Med Confidence"
-		} else {
-			ConfLevel = "Low Confidence"
-		}
-		var predictionText = 'Score: ' + data.siftScore *100 + '% , ' + ConfLevel;
-        ConfRow.append('td').text(predictionText);
+    if (data.polyphenPrediction && (data.polyphenPrediction !== '-') && (data.polyphenInUse !== false)) {
+        var polyRow = tooltip.table.append('tr');
+        polyRow.append('td').append('span').append('a')
+            .attr('href', 'http://genetics.bwh.harvard.edu/pph2/dokuwiki/about')
+            .attr('target', '_blank').text('Polyphen');
+        var text = data.polyphenPrediction + ', score ' + data.polyphenScore;
+        polyRow.append('td').text(text);
     }
-	if (data.siftPrediction && (data.siftPrediction !== '-') && (data.siftInUse !== false)) {
-        var tret = tooltip.table.append('tr');
-        tret.append('td').append('span').append('a')
-            .attr('href', 'http://google.co.uk')
-            .attr('target', '_blank').text('EXTRA');
-        var predictionText = 'More Information';
-        tret.append('td').text(predictionText);
+    if (data.siftPrediction && (data.siftPrediction !== '-') && (data.siftInUse !== false)) {
+        var siftRow = tooltip.table.append('tr');
+        siftRow.append('td').append('span').append('a')
+            .attr('href', 'http://sift.jcvi.org/')
+            .attr('target', '_blank').text('SIFT');
+        var predictionText = data.siftPrediction + ', score ' + data.siftScore;
+        siftRow.append('td').text(predictionText);
     }
 };
 
