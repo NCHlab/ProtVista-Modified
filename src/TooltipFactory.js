@@ -326,7 +326,8 @@ var addPredictions = function(tooltip, data) {
         // var text = data.polyphenPrediction + ', score ' + data.polyphenScore;
         // polyRow.append('td').text(text);
     // }
-    if (data.siftPrediction && (data.siftPrediction !== '-') && (data.siftInUse !== false)) {
+	// if (data.siftPrediction && (data.siftPrediction !== '-') && (data.siftInUse !== false)) {
+    if (data.siftPrediction && (data.siftPrediction !== '-')) {
         var ConfRow = tooltip.table.append('tr');
         ConfRow.append('td').append('span').append('a')
             .attr('href', 'http://rtpea.com/browse')
@@ -337,13 +338,15 @@ var addPredictions = function(tooltip, data) {
 			ConfLevel = "High Confidence"
 		} else if (data.siftScore < 0.8 && data.siftScore >= 0.4){
 			ConfLevel = "Med Confidence"
-		} else {
+		} else if (data.siftScore < 0.4) {
 			ConfLevel = "Low Confidence"
+		} else {
+			ConfLevel = "TBC"
 		}
 		var predictionText = 'Score: ' + data.siftScore *100 + '% , ' + ConfLevel;
         ConfRow.append('td').text(predictionText);
     }
-	if (data.siftPrediction && (data.siftPrediction !== '-') && (data.siftInUse !== false)) {
+	if (data.siftPrediction && (data.siftPrediction !== '-')) {
         var tret = tooltip.table.append('tr');
         tret.append('td').append('span').append('a')
             .attr('href', 'http://google.co.uk')
