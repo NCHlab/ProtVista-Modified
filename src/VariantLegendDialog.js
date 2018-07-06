@@ -43,16 +43,27 @@ var LegendDialog = function() {
         benignColor: '#8FE3FF',
         UPNonDiseaseColor: '#99cc00',
         othersColor: '#FFCC00',
-		F1HighColor: '#C99A18',
-		F1LowColor: '#8FE3FF',
+		HsHighColor: '#0b8700',
+		HsLowColor: '#bbff56',
+		PaHighColor: '#870E0E',
+		PaLowColor: '#FF3535',
         // consequenceColors: ["#e78ac3","#fc8d62","#e5c494", "#762A83", "#B35806", "#ffffff","#000000"],
 		consequenceColors: ["#bae814","#e81e13","#e8d612", "#562727", "#26bc1c", "#17d8c5","#6017d8","#ce17d8","#17d8a4"],
+		consequenceColors2: [{getPredictionColor: d3.scale.linear()
+								.domain([0,1])
+								.range(['#0b8700','#bbff56'])},
+								{getPredictionColor: d3.scale.linear()
+								.domain([0,1])
+								.range(['#870E0E','#FF3535'])}],
         getPredictionColor: d3.scale.linear()
             .domain([0,1])
             .range(['#002594','#8FE3FF']),
 		getPredictionColor2: d3.scale.linear()
             .domain([0,1])
-            .range(['#C99A18','#F9B700']),
+            .range(['#0b8700','#bbff56']),
+		getPredictionColor3: d3.scale.linear()
+            .domain([0,1])
+            .range(['#870E0E','#FF3535']),
         createLegendDialog: function(container, fv) {
             this.dialog = container.append('div')
                 .attr('class','up_pftv_dialog-container');

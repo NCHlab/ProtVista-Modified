@@ -33,7 +33,8 @@ var Evidence = function() {
         }, variantSourceType: {
             uniprot: 'uniprot',
             lss: 'large_scale_study',
-            mixed: 'mixed'
+            mixed: 'mixed',
+			diseased: 'diseased',
         }, existAssociation: function(association) {
             if (association) {
                 if (association.length !== 0) {

@@ -40,7 +40,12 @@ var getPredictionColorScore = function(siftScore, siftPrediction, polyphenScore,
 var getVariantsFillColor = function(fv, d, extDatum, externalPrediction, predictionScore) {
     if (d.externalData && extDatum.consequence) {
         var pos = Constants.getConsequenceTypes().indexOf(extDatum.consequence);
-        return pos !== -1 ? LegendDialog.consequenceColors[pos%LegendDialog.consequenceColors.length] : 'black';
+		// return pos !== -1 ? LegendDialog.consequenceColors[pos%LegendDialog.consequenceColors.length] : 'black';
+        // return pos !== -1 ? LegendDialog.getPredictionColor2(externalPrediction) : 'black';
+		// console.log(LegendDialog.consequenceColors2[pos%LegendDialog.consequenceColors2.length])
+		return pos !== -1 ? LegendDialog.consequenceColors2[pos%LegendDialog.consequenceColors2.length].getPredictionColor(externalPrediction) : 'white';
+		
+		// return pos !== -1 ? LegendDialog.consequenceColors[pos%LegendDialog.consequenceColors.length] : 'black';
     }
 
     if (fv.overwritePredictions === true) {
@@ -87,8 +92,9 @@ var variantsFill = function(d, fv) {
         if (d.externalData) {
             var keys = _.keys(d.externalData);
             extDatum = d.externalData[keys[0]];
+			// console.log(d.externalData[keys[0]])
             externalPrediction = getPredictionColorScore(extDatum.siftScore, extDatum.siftPrediction,
-                extDatum.polyphenScore, extDatum.polyphenPrediction);
+                extDatum.polyphenScore, extDatum.polyphenPrediction, extDatum.consequence);
             extDatum.siftInUse = false;
             extDatum.polyphenInUse = false;
         }

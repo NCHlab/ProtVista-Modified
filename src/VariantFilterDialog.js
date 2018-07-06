@@ -43,6 +43,51 @@ var defaultFilterCasePrediction = {
     },
     colorRange: [LegendDialog.deleteriousColor, LegendDialog.benignColor]
 };
+
+var defaultFilterCasePrediction2 = {
+	// label: ['Predicted deleterious', 'Predicted benign'],
+    label: ['HS Higher Conf', 'HS Lower Conf'],
+    on: true,
+    properties: {
+        'alternativeSequence': /[^*]/,
+        'sourceType': [Evidence.variantSourceType.lss, null],
+        'externalData': function(variant) {
+            if (!variant.sourceType) {
+                return _.some(variant.externalData, function(data) {
+                    return (data.polyphenPrediction && (data.polyphenPrediction !== 'del')) ||
+                        (data.siftPrediction && (data.siftPrediction !== 'del'));
+                });
+            } else {
+                return true;
+            }
+        }
+    },
+    colorRange: [LegendDialog.HsHighColor, LegendDialog.HsLowColor]
+};
+
+
+var defaultFilterCasePrediction3 = {
+	// label: ['Predicted deleterious', 'Predicted benign'],
+    label: ['PA Higher Conf', 'PA Lower Conf'],
+    on: true,
+    properties: {
+        'alternativeSequence': /[^*]/,
+        'sourceType': [Evidence.variantSourceType.lss, null],
+        'externalData': function(variant) {
+            if (!variant.sourceType) {
+                return _.some(variant.externalData, function(data) {
+                    return (data.polyphenPrediction && (data.polyphenPrediction !== 'del')) ||
+                        (data.siftPrediction && (data.siftPrediction !== 'del'));
+                });
+            } else {
+                return true;
+            }
+        }
+    },
+    colorRange: [LegendDialog.PaHighColor, LegendDialog.PaLowColor]
+};
+
+
 var defaultFilterCaseNonDisease = {
     label: 'Non-disease (reviewed)',
     on: true,
@@ -94,8 +139,21 @@ var defaultFilterCaseLSS = {
     },
     color: 'grey'
 };
+
+var Mycase1 = {
+    label: 'New Case',
+    on: true,
+    properties: {
+        'sourceType': [
+            Evidence.variantSourceType.diseased
+        ]
+    },
+    color: 'red',
+	border: '2px solid black'
+};
+
 var defaultFilterSource = {
-    label: 'Filter data source',
+    label: 'Current Data Source',
     cases: []
 };
 
@@ -104,6 +162,7 @@ var filters = [];
 var populateFilters = function(fv) {
     if (!populated) {
         if (fv.defaultSource === true) {
+			// DO NOT BOTHER WITH THESE - THIS IS FOR NON CUSTOM SOURCES
             defaultFilterConsequence.cases.push(defaultFilterCaseDisease);
             defaultFilterConsequence.cases.push(defaultFilterCasePrediction);
             defaultFilterConsequence.cases.push(defaultFilterCaseNonDisease);
@@ -113,7 +172,11 @@ var populateFilters = function(fv) {
             defaultFilterSource.cases.push(defaultFilterCaseLSS);
             filters.push(defaultFilterSource);
         } else {
+			// CUSTOM SOURCES
             defaultFilterConsequence.cases.push(defaultFilterCasePrediction);
+			defaultFilterConsequence.cases.push(defaultFilterCasePrediction2);
+			defaultFilterConsequence.cases.push(defaultFilterCasePrediction3);
+			defaultFilterSource.cases.push(Mycase1);
             filters.push(defaultFilterConsequence);
             filters.push(defaultFilterSource);
         }

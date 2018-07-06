@@ -38,12 +38,13 @@ var populateDialog = function (fv, wrapper) {
 
     wrapper.append('div').style('text-align', 'right')
         .append('button')
-        .text('Download')
+        .text('Download From API')
         .on('click', function() {
             var selected = wrapper.selectAll('input').filter(function() {
                 return d3.select(this).property('checked');
             });
-            DownloadDataLoader.get(fv.uniprotacc, selected.attr('value'), isSafari);
+			// DownloadDataLoader.get(fv.uniprotacc, selected.attr('value'), isSafari);
+            window.location.replace('http://rtpea.com/api');
         });
 };
 

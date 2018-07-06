@@ -232,14 +232,15 @@ var createButtons = function(fv, data, container) {
         .attr('class','up_pftv_buttons');
     buttons.append('a')
         .attr('class','up_pftv_icon-button up_pftv_icon-download')
-        .attr('title','Download data')
-        .attr('href','#')
+        .attr('title','Download JSON Data')
+        .attr('href','http://rtpea.com/api')
         .on('click', function(){
-            DownloadDialog.displayDialog(fv, buttons);
+            // DownloadDialog.displayDialog(fv, buttons);
+			window.location.replace('http://rtpea.com/api');
         });
     buttons.append('a')
         .attr('class','up_pftv_icon-button up_pftv_icon-location')
-        .attr('title','Highlight region')
+        .attr('title','Highlight Region')
         .attr('href','#')
         .on('click', function(){
             HighlightRegionDialog.displayDialog(fv, buttons);
