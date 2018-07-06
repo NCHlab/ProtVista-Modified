@@ -48,13 +48,34 @@ var LegendDialog = function() {
 		PaHighColor: '#870E0E',
 		PaLowColor: '#FF3535',
         // consequenceColors: ["#e78ac3","#fc8d62","#e5c494", "#762A83", "#B35806", "#ffffff","#000000"],
-		consequenceColors: ["#bae814","#e81e13","#e8d612", "#562727", "#26bc1c", "#17d8c5","#6017d8","#ce17d8","#17d8a4"],
+		consequenceColors: ["#5c8e00","#8e0700","#9e9000", "#513e3e", "#088700", "#008477","#35008c","#93009b","#00996f"],
 		consequenceColors2: [{getPredictionColor: d3.scale.linear()
 								.domain([0,1])
-								.range(['#0b8700','#bbff56'])},
+								.range(['#5c8e00','#dbff5b'])},
 								{getPredictionColor: d3.scale.linear()
 								.domain([0,1])
-								.range(['#870E0E','#FF3535'])}],
+								.range(['#8e0700','#ff7f68'])},
+								{getPredictionColor: d3.scale.linear()
+								.domain([0,1])
+								.range(['#9e9000','#fff05b'])},
+								{getPredictionColor: d3.scale.linear()
+								.domain([0,1])
+								.range(['#513e3e','#cebbbb'])},
+								{getPredictionColor: d3.scale.linear()
+								.domain([0,1])
+								.range(['#088700','#8eff87'])},
+								{getPredictionColor: d3.scale.linear()
+								.domain([0,1])
+								.range(['#008477','#7ffff2'])},
+								{getPredictionColor: d3.scale.linear()
+								.domain([0,1])
+								.range(['#35008c','#b78cff'])},
+								{getPredictionColor: d3.scale.linear()
+								.domain([0,1])
+								.range(['#93009b','#f579fc'])},
+								{getPredictionColor: d3.scale.linear()
+								.domain([0,1])
+								.range(['#00996f','#7affda'])}],
         getPredictionColor: d3.scale.linear()
             .domain([0,1])
             .range(['#002594','#8FE3FF']),
