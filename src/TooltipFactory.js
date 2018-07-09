@@ -116,7 +116,7 @@ var addConsequence = function(tooltip, consequence) {
     if (consequence) {
         var dataId = tooltip.table.append('tr');
         dataId.append('td').text('Consequence');
-        dataId.append('td').text(consequence);
+        dataId.append('td').text(consequence.toUpperCase()).attr('class', 'bigbold');
     }
 };
 
