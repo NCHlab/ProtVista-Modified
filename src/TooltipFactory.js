@@ -343,8 +343,20 @@ var addPredictions = function(tooltip, data) {
 		} else {
 			ConfLevel = "TBC"
 		}
-		var predictionText = 'Score: ' + data.siftScore *100 + '% , ' + ConfLevel;
-        ConfRow.append('td').text(predictionText);
+		var predictionText = 'Score: ' + data.siftScore *100 + '% - ' + ConfLevel;
+    
+		if (data.siftScore >= 0.8){
+			ConfRow.append('td').text(predictionText).attr('class', 'high_conf');
+		} else if (data.siftScore < 0.8 && data.siftScore >= 0.4){
+			ConfRow.append('td').text(predictionText).attr('class', 'med_conf');
+		} else if (data.siftScore < 0.4) {
+			ConfRow.append('td').text(predictionText).attr('class', 'low_conf');
+		} else {
+			ConfRow.append('td').text(predictionText).attr('class', 'bigbold');
+		}
+		// ConfRow.append('td').text("this is test");
+		// dataId.append('td').text(consequence.toUpperCase()).attr('class', 'bigbold');
+		
     }
 	if (data.siftPrediction && (data.siftPrediction !== '-')) {
         var tret = tooltip.table.append('tr');

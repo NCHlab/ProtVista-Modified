@@ -7,6 +7,22 @@ svg {
 	font-size: 15px;
 }
 
+.high_conf {
+	color: #2da000;
+	font-weight: bold;
+}
+
+.med_conf {
+	color: #ba7806;
+	font-weight: bold;
+}
+
+.low_conf {
+	color: #ad0e00;
+	font-weight: bold;
+}
+
+
 .up_pftv_buttons {
     display: inline-block;
     padding: 0 .5em 0 .5em;

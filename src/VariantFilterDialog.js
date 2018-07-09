@@ -44,48 +44,48 @@ var defaultFilterCasePrediction = {
     colorRange: [LegendDialog.deleteriousColor, LegendDialog.benignColor]
 };
 
-var defaultFilterCasePrediction2 = {
+// var defaultFilterCasePrediction2 = {
 	// label: ['Predicted deleterious', 'Predicted benign'],
-    label: ['HS Higher Conf', 'HS Lower Conf'],
-    on: true,
-    properties: {
-        'alternativeSequence': /[^*]/,
-        'sourceType': [Evidence.variantSourceType.lss, null],
-        'externalData': function(variant) {
-            if (!variant.sourceType) {
-                return _.some(variant.externalData, function(data) {
-                    return (data.polyphenPrediction && (data.polyphenPrediction !== 'del')) ||
-                        (data.siftPrediction && (data.siftPrediction !== 'del'));
-                });
-            } else {
-                return true;
-            }
-        }
-    },
-    colorRange: [LegendDialog.HsHighColor, LegendDialog.HsLowColor]
-};
+    // label: ['HS Higher Conf', 'HS Lower Conf'],
+    // on: true,
+    // properties: {
+        // 'alternativeSequence': /[^*]/,
+        // 'sourceType': [Evidence.variantSourceType.lss, null],
+        // 'externalData': function(variant) {
+            // if (!variant.sourceType) {
+                // return _.some(variant.externalData, function(data) {
+                    // return (data.polyphenPrediction && (data.polyphenPrediction !== 'del')) ||
+                        // (data.siftPrediction && (data.siftPrediction !== 'del'));
+                // });
+            // } else {
+                // return true;
+            // }
+        // }
+    // },
+    // colorRange: [LegendDialog.HsHighColor, LegendDialog.HsLowColor]
+// };
 
 
-var defaultFilterCasePrediction3 = {
+// var defaultFilterCasePrediction3 = {
 	// label: ['Predicted deleterious', 'Predicted benign'],
-    label: ['PA Higher Conf', 'PA Lower Conf'],
-    on: true,
-    properties: {
-        'alternativeSequence': /[^*]/,
-        'sourceType': [Evidence.variantSourceType.lss, null],
-        'externalData': function(variant) {
-            if (!variant.sourceType) {
-                return _.some(variant.externalData, function(data) {
-                    return (data.polyphenPrediction && (data.polyphenPrediction !== 'del')) ||
-                        (data.siftPrediction && (data.siftPrediction !== 'del'));
-                });
-            } else {
-                return true;
-            }
-        }
-    },
-    colorRange: [LegendDialog.PaHighColor, LegendDialog.PaLowColor]
-};
+    // label: ['PA Higher Conf', 'PA Lower Conf'],
+    // on: true,
+    // properties: {
+        // 'alternativeSequence': /[^*]/,
+        // 'sourceType': [Evidence.variantSourceType.lss, null],
+        // 'externalData': function(variant) {
+            // if (!variant.sourceType) {
+                // return _.some(variant.externalData, function(data) {
+                    // return (data.polyphenPrediction && (data.polyphenPrediction !== 'del')) ||
+                        // (data.siftPrediction && (data.siftPrediction !== 'del'));
+                // });
+            // } else {
+                // return true;
+            // }
+        // }
+    // },
+    // colorRange: [LegendDialog.PaHighColor, LegendDialog.PaLowColor]
+// };
 
 
 var defaultFilterCaseNonDisease = {
@@ -140,17 +140,17 @@ var defaultFilterCaseLSS = {
     color: 'grey'
 };
 
-var Mycase1 = {
-    label: 'New Case',
-    on: true,
-    properties: {
-        'sourceType': [
-            Evidence.variantSourceType.diseased
-        ]
-    },
-    color: 'red',
-	border: '2px solid black'
-};
+// var Mycase1 = {
+    // label: 'New Case',
+    // on: true,
+    // properties: {
+        // 'sourceType': [
+            // Evidence.variantSourceType.diseased
+        // ]
+    // },
+    // color: 'red',
+	// border: '2px solid black'
+// };
 
 var defaultFilterSource = {
     label: 'Current Data Source',
@@ -174,9 +174,9 @@ var populateFilters = function(fv) {
         } else {
 			// CUSTOM SOURCES
             defaultFilterConsequence.cases.push(defaultFilterCasePrediction);
-			defaultFilterConsequence.cases.push(defaultFilterCasePrediction2);
-			defaultFilterConsequence.cases.push(defaultFilterCasePrediction3);
-			defaultFilterSource.cases.push(Mycase1);
+			// defaultFilterConsequence.cases.push(defaultFilterCasePrediction2);
+			// defaultFilterConsequence.cases.push(defaultFilterCasePrediction3);
+			// defaultFilterSource.cases.push(Mycase1);
             filters.push(defaultFilterConsequence);
             filters.push(defaultFilterSource);
         }
