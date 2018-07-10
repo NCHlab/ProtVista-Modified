@@ -334,26 +334,45 @@ var addPredictions = function(tooltip, data) {
             .attr('target', '_blank').text('Confidence');
         // var predictionText = data.siftPrediction + ', score ' + data.siftScore;
 		var ConfLevel = "TBC"
+		
 		if (data.siftScore >= 0.8){
 			ConfLevel = "High Confidence"
-		} else if (data.siftScore < 0.8 && data.siftScore >= 0.4){
-			ConfLevel = "Med Confidence"
-		} else if (data.siftScore < 0.4) {
-			ConfLevel = "Low Confidence"
-		} else {
-			ConfLevel = "TBC"
-		}
-		var predictionText = 'Score: ' + data.siftScore *100 + '% - ' + ConfLevel;
-    
-		if (data.siftScore >= 0.8){
+			var predictionText = 'Score: ' + data.siftScore *100 + '% - ' + ConfLevel;
 			ConfRow.append('td').text(predictionText).attr('class', 'high_conf');
 		} else if (data.siftScore < 0.8 && data.siftScore >= 0.4){
+			ConfLevel = "Med Confidence"
+			var predictionText = 'Score: ' + data.siftScore *100 + '% - ' + ConfLevel;
 			ConfRow.append('td').text(predictionText).attr('class', 'med_conf');
-		} else if (data.siftScore < 0.4) {
+		} else if (data.siftScore < 0.4 && data.siftScore >= 0) {
+			ConfLevel = "Low Confidence"
+			var predictionText = 'Score: ' + data.siftScore *100 + '% - ' + ConfLevel;
 			ConfRow.append('td').text(predictionText).attr('class', 'low_conf');
 		} else {
-			ConfRow.append('td').text(predictionText).attr('class', 'bigbold');
+			ConfLevel = "TBC"
+			var predictionText = 'Score: '+ ' - ' + ConfLevel;
+			ConfRow.append('td').text(predictionText).attr('class', 'normbold ');
 		}
+		// var ConfLevel = "TBC"
+		// if (data.siftScore >= 0.8){
+			// ConfLevel = "High Confidence"
+		// } else if (data.siftScore < 0.8 && data.siftScore >= 0.4){
+			// ConfLevel = "Med Confidence"
+		// } else if (data.siftScore < 0.4) {
+			// ConfLevel = "Low Confidence"
+		// } else {
+			// ConfLevel = "TBC"
+		// }
+		// var predictionText = 'Score: ' + data.siftScore *100 + '% - ' + ConfLevel;
+    
+		// if (data.siftScore >= 0.8){
+			// ConfRow.append('td').text(predictionText).attr('class', 'high_conf');
+		// } else if (data.siftScore < 0.8 && data.siftScore >= 0.4){
+			// ConfRow.append('td').text(predictionText).attr('class', 'med_conf');
+		// } else if (data.siftScore < 0.4 && data.siftScore >= 0) {
+			// ConfRow.append('td').text(predictionText).attr('class', 'low_conf');
+		// } else {
+			// ConfRow.append('td').text(predictionText).attr('class', 'bigbold');
+		// }
 		// ConfRow.append('td').text("this is test");
 		// dataId.append('td').text(consequence.toUpperCase()).attr('class', 'bigbold');
 		
@@ -361,7 +380,7 @@ var addPredictions = function(tooltip, data) {
 	if (data.siftPrediction && (data.siftPrediction !== '-')) {
         var tret = tooltip.table.append('tr');
         tret.append('td').append('span').append('a')
-            .attr('href', 'http://google.co.uk')
+            .attr('href', 'http://rtpea.com/info')
             .attr('target', '_blank').text('EXTRA');
         var predictionText = 'More Information';
         tret.append('td').text(predictionText);

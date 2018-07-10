@@ -7,6 +7,10 @@ svg {
 	font-size: 15px;
 }
 
+.normbold {
+	font-weight: bold;
+}
+
 .high_conf {
 	color: #2da000;
 	font-weight: bold;
