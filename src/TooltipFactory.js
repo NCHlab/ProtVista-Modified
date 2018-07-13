@@ -310,6 +310,22 @@ var AlternativeTooltipViewer = function(tooltip, change, field) {
     tooltip.addRetrominer();
 };
 
+var addFamily = function(tooltip, data) {
+	if (data.siftPrediction && (data.siftPrediction !== '-')) {
+		var FamRow = tooltip.table.append('tr');
+		FamRow.append('td').append('span').append('a')
+			.attr('href', 'http://rtpea.com/info')
+			.attr('target', '_blank').text('Family');
+		// var predictionText = data.family === "PA" ? "PA" : "N/A"; // Changed
+		var predictionText = "Unknown"
+		if (data.family){
+			 predictionText = data.family
+		} else { predictionText = "N/A"
+		}
+		FamRow.append('td').text(predictionText);
+	}
+};
+	
 var addPredictions = function(tooltip, data) {
     if (data.frequency && (data.frequency !== 0)) {
         var freqRow = tooltip.table.append('tr');
@@ -377,12 +393,14 @@ var addPredictions = function(tooltip, data) {
 		// dataId.append('td').text(consequence.toUpperCase()).attr('class', 'bigbold');
 		
     }
+	
+	
 	if (data.siftPrediction && (data.siftPrediction !== '-')) {
         var tret = tooltip.table.append('tr');
         tret.append('td').append('span').append('a')
             .attr('href', 'http://rtpea.com/info')
             .attr('target', '_blank').text('EXTRA');
-        var predictionText = 'More Information';
+        var predictionText = 'More Information';;
         tret.append('td').text(predictionText);
     }
 };
@@ -496,6 +514,7 @@ var addSection = function(tooltip, data, ftId, description, evidences, xrefs, se
         lssRow.append('td').attr('colspan', 2).text(sectionTitle);
         addFtId(tooltip, ftId);
         addDescription(tooltip, description);
+		addFamily(tooltip, data);
         addConsequence(tooltip, data.consequence);
         addPredictions(tooltip, data);
         tooltip.addEvidences(evidences);
