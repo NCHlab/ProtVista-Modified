@@ -534,7 +534,11 @@ var addSection = function(tooltip, data, ftId, description, evidences, xrefs, se
         addFtId(tooltip, ftId);
         addDescription(tooltip, description);
 		addFamily(tooltip, data);
-        addConsequence(tooltip, data.consequence);
+		if (data.consequence.slice(-8).toLowerCase() == "diseased"){
+			addConsequence(tooltip, data.consequence.slice(0,-9));
+		} else { 
+			addConsequence(tooltip, data.consequence);
+		}
 		addConsequence2(tooltip, data.consequence2);
         addPredictions(tooltip, data);
         tooltip.addEvidences(evidences);
