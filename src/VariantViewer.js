@@ -106,12 +106,12 @@ var variantsFill = function(d, fv) {
 };
 
 var drawVariants = function(variantViewer, bars, frequency, fv, container, catTitle) {
-	console.log(fv)
-	console.log("+++++++++++++++++++++++++")
-	console.log(bars)
+	// console.log(fv)
+	// console.log("+++++++++++++++++++++++++")
+	// console.log(bars)
     var variantCircle = bars.selectAll('circle')
         .data(function(d) {
-			console.log(d.variants)
+			// console.log(d.variants)
             return d.variants;
         });
 

@@ -172,6 +172,9 @@ var DataLoader = function() {
                 if (d.consequence) {
                     Constants.addConsequenceType(d.consequence);
                 }
+				if (d.consequence2) {
+                    Constants.addConsequence2Type(d.consequence2);
+                }
             });
             return [
                 ['VARIATION', mutationArray]

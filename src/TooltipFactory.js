@@ -120,6 +120,14 @@ var addConsequence = function(tooltip, consequence) {
     }
 };
 
+var addConsequence2 = function(tooltip, consequence2) {
+    if (consequence2) {
+        var dataId = tooltip.table.append('tr');
+        dataId.append('td').text('State');
+        dataId.append('td').text(consequence2.slice(-8).toUpperCase()).attr('class', 'bigbold');
+    }
+};
+
 var addDescription = function(tooltip, description) {
     if (description) {
         var dataDes = tooltip.table.append('tr');
@@ -343,6 +351,17 @@ var addPredictions = function(tooltip, data) {
         // polyRow.append('td').text(text);
     // }
 	// if (data.siftPrediction && (data.siftPrediction !== '-') && (data.siftInUse !== false)) {
+	// console.log(data[1])
+	// data.externalData.Proteomics_QMUL.consequence2 == undefined || (data.consequence2 == undefined)
+	if (data.consequence2 == undefined) {
+        var tret = tooltip.table.append('tr');
+        tret.append('td').append('span').append('a')
+            .attr('href', 'http://rtpea.com/info')
+            .attr('target', '_blank').text('State');
+        var predictionText = 'Normal';;
+        tret.append('td').text(predictionText);
+    }
+	
     if (data.siftPrediction && (data.siftPrediction !== '-')) {
         var ConfRow = tooltip.table.append('tr');
         ConfRow.append('td').append('span').append('a')
@@ -509,13 +528,14 @@ var addSection = function(tooltip, data, ftId, description, evidences, xrefs, se
     var hasEvidences = evidences && _.keys(evidences).length !== 0;
     xrefs = xrefs ? xrefs : [];
     if (data.ftId || description || (hasEvidences) || hasPredictions(data) || (xrefs.length !== 0) ||
-        data.consequence) {
+        data.consequence || data.consequence2) {
         var lssRow = tooltip.table.append('tr').classed('up_pftv_section', true);
         lssRow.append('td').attr('colspan', 2).text(sectionTitle);
         addFtId(tooltip, ftId);
         addDescription(tooltip, description);
 		addFamily(tooltip, data);
         addConsequence(tooltip, data.consequence);
+		addConsequence2(tooltip, data.consequence2);
         addPredictions(tooltip, data);
         tooltip.addEvidences(evidences);
         addXRefs(tooltip, xrefs);

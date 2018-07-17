@@ -229,9 +229,31 @@ var addConsequenceTypes = function() {
     });
 };
 
+var addConsequence2Types = function() {
+    _.each(Constants.getConsequence2Types(), function(consequence2, index) {
+        var exist = _.find(filters[0].cases, function(aCase) {
+            return aCase.label === consequence2;
+        });
+        if (!exist) {
+            filters[0].cases.push({
+                label: consequence2,
+                on: true,
+                properties: {
+                    'consequence2': function(variant) {
+                        var keys = _.keys(variant.externalData);
+                        return (keys.length > 0) ? variant.externalData[keys[0]].consequence2 === consequence2 : false;
+                    }
+                },
+                color: LegendDialog.consequenceColors[index % LegendDialog.consequenceColors.length]
+            });
+        }
+    });
+};
+
 var VariantFilterDialog = function(fv, container, variantViewer) {
     populateFilters(fv);
     addConsequenceTypes();
+	addConsequence2Types();
     addSourceFilters();
 
     var variantFilterDialog = this;

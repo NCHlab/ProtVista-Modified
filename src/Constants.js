@@ -39,6 +39,7 @@ var allTrackNames = Config.trackNames;
 var downloadFormats = [{text: 'JSON', type: 'json', all: true}, {text: 'XML', type: 'xml', all: false},
     {text: 'GFF', type: 'gff', all: false}];
 var consequenceTypes = [];
+var consequence2Types = [];
 
 var Constants = function() {
   return {
@@ -75,6 +76,12 @@ var Constants = function() {
     },
     getConsequenceTypes: function() {
         return _.uniq(consequenceTypes);
+    },
+	addConsequence2Type: function(consequence2) {
+        consequence2Types.push(consequence2);
+    },
+    getConsequence2Types: function() {
+        return _.uniq(consequence2Types);
     },
     clearDataSources: function() {
         allSources = [];
