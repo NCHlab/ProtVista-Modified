@@ -354,12 +354,12 @@ var addPredictions = function(tooltip, data) {
 	// console.log(data[1])
 	// data.externalData.Proteomics_QMUL.consequence2 == undefined || (data.consequence2 == undefined)
 	if (data.consequence2 == undefined) {
-        var tret = tooltip.table.append('tr');
-        tret.append('td').append('span').append('a')
+        var DiseaseText = tooltip.table.append('tr');
+        DiseaseText.append('td').append('span').append('a')
             .attr('href', 'http://rtpea.com/info')
             .attr('target', '_blank').text('State');
         var predictionText = 'Normal';;
-        tret.append('td').text(predictionText);
+        DiseaseText.append('td').text(predictionText);
     }
 	
     if (data.siftPrediction && (data.siftPrediction !== '-')) {
@@ -415,12 +415,20 @@ var addPredictions = function(tooltip, data) {
 	
 	
 	if (data.siftPrediction && (data.siftPrediction !== '-')) {
-        var tret = tooltip.table.append('tr');
-        tret.append('td').append('span').append('a')
-            .attr('href', 'http://rtpea.com/info')
-            .attr('target', '_blank').text('EXTRA');
-        var predictionText = 'More Information';;
-        tret.append('td').text(predictionText);
+        var ChrMap = tooltip.table.append('tr');
+        ChrMap.append('td').append('span').append('a')
+            // .attr('href', 'http://rtpea.com/ideogram/'+data.description)
+			.attr('href', 'http://localhost:3000/ideogram/'+data.description)
+            .attr('target', '_blank').text('Chr Mapper');
+		ChrMap.append('td').append('span').append('a')
+		// .attr('href', 'http://rtpea.com/ideogram/'+data.description)
+		.attr('href', 'http://localhost:3000/ideogram/'+data.description)
+		.attr('target', '_blank').text('Click to Map');
+        // var predictionText = 'Click to Map';
+        // ChrMap.append('td').text(predictionText).append('a')
+			// .attr('href', 'http://localhost:3000/ideogram/'+data.description)
+			// .attr('target', '_blank')
+ 
     }
 };
 
