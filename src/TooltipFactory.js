@@ -75,6 +75,7 @@ var getEvidenceText = function(tooltip, code, sources) {
     } else {
         evidenceText = code;
     }
+	//
     return evidenceText +
         (Evidence.text[code] ? ' (' + Evidence.text[code] + ')' : '');
 };
