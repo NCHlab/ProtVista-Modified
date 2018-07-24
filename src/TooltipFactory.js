@@ -353,13 +353,15 @@ var addPredictions = function(tooltip, data) {
 	// if (data.siftPrediction && (data.siftPrediction !== '-') && (data.siftInUse !== false)) {
 	// console.log(data[1])
 	// data.externalData.Proteomics_QMUL.consequence2 == undefined || (data.consequence2 == undefined)
-	if (data.consequence2 == undefined) {
+	if (data.siftPrediction && (data.siftPrediction !== '-')){
+		if (data.consequence2 == undefined) {
         var DiseaseText = tooltip.table.append('tr');
         DiseaseText.append('td').append('span').append('a')
             .attr('href', 'http://rtpea.com/info')
             .attr('target', '_blank').text('State');
         var predictionText = 'Normal';;
         DiseaseText.append('td').text(predictionText);
+		}
     }
 	
     if (data.siftPrediction && (data.siftPrediction !== '-')) {
