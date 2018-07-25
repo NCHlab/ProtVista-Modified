@@ -280,7 +280,8 @@ var VariantFilterDialog = function(fv, container, variantViewer) {
             filterTitle.classed('up_pftv_keepWithPrevious', true);
         }
         var ul = container.append('ul')
-            .attr('class', 'up_pftv_dialog-container');
+            .attr('class', 'up_pftv_dialog-container')
+			.attr('id', 'orderthelist');
 
         var li = ul
             .selectAll('li')
