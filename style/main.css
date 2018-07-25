@@ -285,7 +285,12 @@ svg {
 /* Dialogs */
 
 .up_pftv_dialog-container {
-  margin:0;padding:0;
+
+  margin: 0;
+  padding: 0;
+  padding-left:10px;
+  text-align: left;
+  list-style-type: none;
 }
 
 .up_pftv_dialog-container li a {
@@ -804,6 +809,7 @@ a.up_pftv_icon-button:hover {
 
 .up_pftv_icon-reset {
     background: url(../SVG/reset.svg);
+	float: left;
 }
 
 .up_pftv_icon-info {
