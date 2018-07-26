@@ -418,15 +418,15 @@ var addPredictions = function(tooltip, data) {
         var ChrMap = tooltip.table.append('tr');
         ChrMap.append('td').append('span').append('a')
             // .attr('href', 'http://rtpea.com/ideogram/'+data.description)
-			.attr('href', 'http://localhost:3000/ideogram/'+data.description)
+			.attr('href', 'http://nayamc.com/ideogram/'+data.description)
             .attr('target', '_blank').text('Chr Mapper');
 		ChrMap.append('td').append('span').append('a')
 		// .attr('href', 'http://rtpea.com/ideogram/'+data.description)
-		.attr('href', 'http://localhost:3000/ideogram/'+data.description)
+		.attr('href', 'http://nayamc.com/ideogram/'+data.description)
 		.attr('target', '_blank').text('Click to Map');
         // var predictionText = 'Click to Map';
         // ChrMap.append('td').text(predictionText).append('a')
-			// .attr('href', 'http://localhost:3000/ideogram/'+data.description)
+			// .attr('href', 'http://nayamc.com/ideogram/'+data.description)
 			// .attr('target', '_blank')
  
     }
