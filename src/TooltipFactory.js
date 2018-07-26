@@ -115,7 +115,7 @@ var addFtId = function(tooltip, ftId) {
 var addConsequence = function(tooltip, consequence) {
     if (consequence) {
         var dataId = tooltip.table.append('tr');
-        dataId.append('td').text('Consequence');
+        dataId.append('td').text('Tissue Type');
         dataId.append('td').text(consequence.toUpperCase()).attr('class', 'bigbold');
     }
 };
@@ -125,6 +125,15 @@ var addConsequence2 = function(tooltip, consequence2) {
         var dataId = tooltip.table.append('tr');
         dataId.append('td').text('State');
         dataId.append('td').text(consequence2.slice(-8).toUpperCase()).attr('class', 'bigbold');
+    }
+};
+
+var addConsequence3 = function(tooltip, consequence3) {
+    if (consequence3) {
+        var dataId = tooltip.table.append('tr');
+        dataId.append('td').text('Disease State');
+        // dataId.append('td').text(consequence3);
+		dataId.append('td').text(consequence3.toUpperCase()).attr('class', 'bigbold');
     }
 };
 
@@ -565,7 +574,7 @@ var addSection = function(tooltip, data, ftId, description, evidences, xrefs, se
     var hasEvidences = evidences && _.keys(evidences).length !== 0;
     xrefs = xrefs ? xrefs : [];
     if (data.ftId || description || (hasEvidences) || hasPredictions(data) || (xrefs.length !== 0) ||
-        data.consequence || data.consequence2) {
+        data.consequence || data.consequence2 || data.consequence3) {
         var lssRow = tooltip.table.append('tr').classed('up_pftv_section', true);
         lssRow.append('td').attr('colspan', 2).text(sectionTitle);
         addFtId(tooltip, ftId);
@@ -577,6 +586,7 @@ var addSection = function(tooltip, data, ftId, description, evidences, xrefs, se
 			addConsequence(tooltip, data.consequence);
 		}
 		addConsequence2(tooltip, data.consequence2);
+		addConsequence3(tooltip, data.consequence3);
 		// addSequence1(tooltip, data.Sequence1);
         addPredictions(tooltip, data);
         tooltip.addEvidences(evidences);
