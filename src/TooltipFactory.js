@@ -186,7 +186,7 @@ var Tooltip = function(fv, catTitle, d, container, coordinates) {
 
     var descRow = tooltip.table.append('tr');
 
-    var tooltipTitle = tooltip.data.type + ' ' + tooltip.data.begin +
+    var tooltipTitle = tooltip.data.type + ' POSITION ' + tooltip.data.begin +
         (tooltip.data.end && (tooltip.data.end !== tooltip.data.begin) ? '-' + tooltip.data.end : '');
     descRow.append('th').attr('colspan', 2).text(tooltipTitle);
 
