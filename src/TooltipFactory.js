@@ -359,22 +359,23 @@ var addFamily = function(tooltip, data) {
 
 		var HS_fam = [ "HS_1", "HS_10", "HS_100", "HS_101", "HS_102", "HS_103", "HS_104", "HS_105", "HS_106", "HS_107", "HS_108", "HS_109", "HS_11", "HS_110", "HS_111", "HS_112", "HS_113", "HS_114", "HS_115", "HS_116", "HS_117", "HS_118", "HS_119", "HS_12", "HS_120", "HS_121", "HS_122", "HS_13", "HS_14", "HS_15", "HS_16", "HS_17", "HS_18", "HS_19", "HS_2", "HS_20", "HS_21", "HS_22", "HS_23", "HS_24", "HS_25", "HS_26", "HS_27", "HS_28", "HS_29", "HS_3", "HS_30", "HS_31", "HS_32", "HS_33", "HS_34", "HS_35", "HS_36", "HS_37", "HS_38", "HS_39", "HS_4", "HS_40", "HS_41", "HS_42", "HS_43", "HS_44", "HS_45", "HS_46", "HS_47", "HS_48", "HS_49", "HS_5", "HS_50", "HS_51", "HS_52", "HS_53", "HS_54", "HS_55", "HS_56", "HS_57", "HS_58", "HS_59", "HS_6", "HS_60", "HS_61", "HS_62", "HS_63", "HS_64", "HS_65", "HS_66", "HS_67", "HS_68", "HS_69", "HS_7", "HS_70", "HS_71", "HS_72", "HS_73", "HS_74", "HS_75", "HS_76", "HS_77", "HS_78", "HS_79", "HS_8", "HS_80", "HS_81", "HS_82", "HS_83", "HS_84", "HS_85", "HS_86", "HS_87", "HS_88", "HS_89", "HS_9", "HS_90", "HS_91", "HS_92", "HS_93", "HS_94", "HS_95", "HS_96", "HS_97", "HS_98", "HS_99" ]
 		
-		var FamRow = tooltip.table.append('tr');
-		FamRow.append('td').append('span').append('a')
-			.attr('href', 'http://rtpea.com/ideogram/')
-			.attr('target', '_blank').text('Family');
-		// var predictionText = data.family === "PA" ? "PA" : "N/A"; // Changed
-		var predictionText = "Unknown"
-		if (data.family){
-			 predictionText = data.family
-		} else { predictionText = "N/A"
-		}
 		if (data.family == "PA2"){
 			var family_name = PA2_fam
 		} else if (data.family == "HS") {
 			var family_name = HS_fam
 		} else {
 			var family_name = ""
+		}
+		
+		var FamRow = tooltip.table.append('tr');
+		FamRow.append('td').append('span').append('a')
+			.attr('href', 'http://rtpea.com/ideogram/'+family_name)
+			.attr('target', '_blank').text('Family');
+		// var predictionText = data.family === "PA" ? "PA" : "N/A"; // Changed
+		var predictionText = "Unknown"
+		if (data.family){
+			 predictionText = data.family
+		} else { predictionText = "N/A"
 		}
 		FamRow.append('td').append('span').append('a')
 			.attr('href', 'http://rtpea.com/ideogram/'+family_name)
