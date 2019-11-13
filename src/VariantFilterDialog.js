@@ -255,6 +255,8 @@ var VariantFilterDialog = function(fv, container, variantViewer) {
     addConsequenceTypes();
 	addConsequence2Types();
     addSourceFilters();
+	
+	var tissue_dropdown = document.getElementById("tissue_dropdown").value
 
     var variantFilterDialog = this;
     variantFilterDialog.variantViewer = variantViewer;
@@ -275,6 +277,71 @@ var VariantFilterDialog = function(fv, container, variantViewer) {
         });
 
     _.each(variantFilterDialog.filters, function(filterSet, index) {
+		//console.log(filterSet.label)
+		//console.log(filterSet.cases[1])
+		//console.log(filterSet.cases[1].label)
+		//console.log("---")
+		if (filterSet.label === "Current Data Source"){
+			var filterTitle = container.append('h4').text(filterSet.label);
+        if (index === 0) {
+            filterTitle.classed('up_pftv_keepWithPrevious', true);
+        }
+        var ul = container.append('ul')
+            .attr('class', 'up_pftv_dialog-container')
+			.attr('id', 'orderthelist');
+
+        var li = ul
+            .selectAll('li')
+            .data(filterSet.cases)
+            .enter()
+            .append('li')
+
+        var anchor = li.append('a')
+            .on('click', function(filter) {
+                if (filter.on === true) {
+                    clearOthers(filterSet, filter);
+                    container.select('.up_pftv_inner-icon-container')
+                        .style('visibility', 'visible');
+                } else {
+                    filter.on = true;
+                    updateResetButton(variantFilterDialog.filters, container);
+                }
+                update();
+                var filteredData = filterData(variantFilterDialog.filters, variantFilterDialog.variantViewer.features);
+                variantFilterDialog.variantViewer.updateData(filteredData);
+            });
+
+        anchor.append('div')
+            .attr('class', function(filter) {
+                if (filter.label instanceof Array) {
+                    return 'up_pftv_legend up_pftv_legend_double';
+                } else {
+                    return 'up_pftv_legend';
+                }
+            })
+            .attr('style', function(filter) {
+                return getBackgroundAndBorder(filter);
+            });
+
+        anchor.append('span')
+            .attr('class', 'up_pftv_legend_text')
+            .html(function(filter) {
+                if (filter.label instanceof Array) {
+                    return filter.label.join('<br/>');
+                } else {
+                    return filter.label;
+                }
+            });
+
+        var update = function() {
+            anchor.select('div').attr('style', function(filter) {
+                return getBackgroundAndBorder(filter);
+            });
+        }
+		} else if (filterSet.label === "Filter consequence"){ ///////////////////////////////////////////////////////////DUPE CODE FOR FILTER
+
+			
+
         var filterTitle = container.append('h4').text(filterSet.label);
         if (index === 0) {
             filterTitle.classed('up_pftv_keepWithPrevious', true);
@@ -287,7 +354,14 @@ var VariantFilterDialog = function(fv, container, variantViewer) {
             .selectAll('li')
             .data(filterSet.cases)
             .enter()
-            .append('li');
+            .append('li')
+			.attr('class', function(filter) {
+                if (filter.label instanceof Array) {
+                    return filter.label.join('<br/>');
+                } else {
+                    return filter.label;
+                }
+            })
 
         var anchor = li.append('a')
             .on('click', function(filter) {
@@ -331,6 +405,7 @@ var VariantFilterDialog = function(fv, container, variantViewer) {
                 return getBackgroundAndBorder(filter);
             });
         };
+		}
     });
 
     variantFilterDialog.reset = function() {
